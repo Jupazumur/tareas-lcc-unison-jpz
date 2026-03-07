@@ -2,18 +2,18 @@ from timeit import timeit
 import random as rand
 import matplotlib.pyplot as plt
 
-def insertion_sort(arr):
+def selection_sort(arr):
+    n = len(arr)
+    for i in range(n - 1):
 
-    datos = arr[:]
-    for j in range(1, len(datos)):
-        x = datos[j]
-        i = j - 1
-        while(i >= 0 and x < datos[i]):
-            datos[i+1] = datos[i]
-            i -= 1
-        datos[i+1] = x
-
-    return datos
+        min_idx = i
+        
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_idx]:
+              
+                min_idx = j
+        
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
 
 def lista_aleatoria(n):
 
@@ -32,7 +32,7 @@ def benchmark_caso_promedio():
         datos_prueba = lista_aleatoria(n)
         
         tiempo_total = timeit(
-            stmt=lambda: insertion_sort(datos_prueba), 
+            stmt=lambda: selection_sort(datos_prueba), 
             number=factor_repeticion,
             globals=globals()
         )
@@ -57,7 +57,7 @@ def benchmark_peor_caso():
         datos_prueba = list(range(n, 0, -1))
         
         tiempo_total = timeit(
-            stmt=lambda: insertion_sort(datos_prueba), 
+            stmt=lambda: selection_sort(datos_prueba), 
             number=factor_repeticion,
             globals=globals()
         )
@@ -82,7 +82,7 @@ def benchmark_mejor_caso():
         datos_prueba = list(range(0, n, 1))
         
         tiempo_total = timeit(
-            stmt=lambda: insertion_sort(datos_prueba), 
+            stmt=lambda: selection_sort(datos_prueba), 
             number=factor_repeticion,
             globals=globals()
         )

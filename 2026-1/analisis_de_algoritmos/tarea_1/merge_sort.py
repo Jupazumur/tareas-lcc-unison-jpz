@@ -2,18 +2,48 @@ from timeit import timeit
 import random as rand
 import matplotlib.pyplot as plt
 
-def insertion_sort(arr):
+def merge(arr, left, mid, right):
+    n1 = mid - left + 1
+    n2 = right - mid
 
-    datos = arr[:]
-    for j in range(1, len(datos)):
-        x = datos[j]
-        i = j - 1
-        while(i >= 0 and x < datos[i]):
-            datos[i+1] = datos[i]
-            i -= 1
-        datos[i+1] = x
+    L = [0] * n1
+    R = [0] * n2
 
-    return datos
+    for i in range(n1):
+        L[i] = arr[left + i]
+    for j in range(n2):
+        R[j] = arr[mid + 1 + j]
+        
+    i = 0  
+    j = 0  
+    k = left  
+
+    while i < n1 and j < n2:
+        if L[i] <= R[j]:
+            arr[k] = L[i]
+            i += 1
+        else:
+            arr[k] = R[j]
+            j += 1
+        k += 1
+
+    while i < n1:
+        arr[k] = L[i]
+        i += 1
+        k += 1
+
+    while j < n2:
+        arr[k] = R[j]
+        j += 1
+        k += 1
+
+def merge_sort(arr, left, right):
+    if left < right:
+        mid = (left + right) // 2
+
+        merge_sort(arr, left, mid)
+        merge_sort(arr, mid + 1, right)
+        merge(arr, left, mid, right)
 
 def lista_aleatoria(n):
 
@@ -32,7 +62,7 @@ def benchmark_caso_promedio():
         datos_prueba = lista_aleatoria(n)
         
         tiempo_total = timeit(
-            stmt=lambda: insertion_sort(datos_prueba), 
+            stmt=lambda: merge_sort(datos_prueba, 0, len(datos_prueba)-1), 
             number=factor_repeticion,
             globals=globals()
         )
@@ -57,7 +87,7 @@ def benchmark_peor_caso():
         datos_prueba = list(range(n, 0, -1))
         
         tiempo_total = timeit(
-            stmt=lambda: insertion_sort(datos_prueba), 
+            stmt=lambda: merge_sort(datos_prueba, 0, len(datos_prueba)-1), 
             number=factor_repeticion,
             globals=globals()
         )
@@ -82,7 +112,7 @@ def benchmark_mejor_caso():
         datos_prueba = list(range(0, n, 1))
         
         tiempo_total = timeit(
-            stmt=lambda: insertion_sort(datos_prueba), 
+            stmt=lambda: merge_sort(datos_prueba, 0, len(datos_prueba)-1),
             number=factor_repeticion,
             globals=globals()
         )
