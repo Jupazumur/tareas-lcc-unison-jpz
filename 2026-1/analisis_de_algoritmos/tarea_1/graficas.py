@@ -14,11 +14,11 @@ def plot_resultados(escala, tiempos, titulo):
     
     plt.show()
 
-def ajustar_y_graficar(sizes, times, titulo_algoritmo):
+def ajustar_y_graficar(escala, tiempos, titulo):
     import numpy as np
 
-    x = np.array(sizes)
-    y = np.array(times)
+    x = np.array(escala)
+    y = np.array(tiempos)
 
     # 1. Ajuste Lineal: T(n) = an + b (Polinomio de grado 1)
     # np.polyfit devuelve los coeficientes [a, b]
@@ -45,7 +45,7 @@ def ajustar_y_graficar(sizes, times, titulo_algoritmo):
     etiqueta_cuad = f'Ajuste Cuadrático: {coef_cuad[0]:.2e}$n^2$ + {coef_cuad[1]:.2e}n + {coef_cuad[2]:.2e}'
     plt.plot(x_suave, y_cuad, 'r-', label=etiqueta_cuad)
 
-    plt.title(f'Ajuste de Mínimos Cuadrados: {titulo_algoritmo}', fontsize=14)
+    plt.title(f'Ajuste de Mínimos Cuadrados: {titulo}', fontsize=14)
     plt.xlabel('Tamaño de entrada (n)', fontsize=12)
     plt.ylabel('Tiempo de ejecución T(n) [segundos]', fontsize=12)
     plt.legend(fontsize=10)
