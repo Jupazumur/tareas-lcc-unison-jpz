@@ -15,6 +15,10 @@ def plot_resultados(escala, tiempos, titulo):
     plt.show()
 
 def ajustar_y_graficar(escala, tiempos, titulo):
+    """
+    Realiza el ajuste lineal y cuadrático usando funciones de numpy,
+    luego lo grafica.
+    """
     import numpy as np
 
     x = np.array(escala)

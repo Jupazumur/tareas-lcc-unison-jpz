@@ -14,6 +14,9 @@ def _cubica(n):
     return n**3
 
 def dibujar_grafica():
+    """
+    Dibuja todas las funciones en una sola gráfica.
+    """
     input = linspace(0.1, 10, 100)
 
     f_log = _logaritmica(input)

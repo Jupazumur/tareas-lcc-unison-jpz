@@ -2,17 +2,20 @@ import graficas as grf
 import benchmark as bm
 
 def selection_sort(arr):
+    datos = arr[:]
     n = len(arr)
     for i in range(n - 1):
 
         min_idx = i
         
         for j in range(i + 1, n):
-            if arr[j] < arr[min_idx]:
+            if datos[j] < datos[min_idx]:
               
                 min_idx = j
         
-        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+        datos[i], datos[min_idx] = datos[min_idx], datos[i]
+    
+    return datos
 
 if __name__ == '__main__':
     

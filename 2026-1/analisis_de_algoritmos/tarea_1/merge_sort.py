@@ -45,6 +45,9 @@ def _merge_sort(arr, left, right):
         _merge(arr, left, mid, right)
 
 def merge_sort_wrap(arr):
+    """
+    Wrapper para poder usar merge sort con el módulo benchmark.py
+    """
     datos = arr[:]
     _merge_sort(datos, 0, len(datos) - 1)
     return datos

@@ -1,4 +1,10 @@
 def run_benchmark(funcion_datos, funcion_sort, imprimir_t=False):
+    """
+    Usa timeit para calcular los tiempos promedio de ejecución para una lista de valores de n.
+
+    funcion_datos es una función que regresa una lista de datos según el caso (mejor, peor, promedio).
+    funcion_sort es la función de ordenamiento a usarse en el benchmark.
+    """
     from timeit import timeit
 
     escala = [10, 50, 100, 200, 500, 800, 1000, 1500, 1800, 2000]
