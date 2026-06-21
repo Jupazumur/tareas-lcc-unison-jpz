@@ -1,4 +1,41 @@
-# TODO: Agregar los de polinomio grado n o aquí o en su propio archivo
+## Algoritmos para evaluar grado n ##
+
+# Algoritmo 1
+def evalua_polinomio_directa(n, x):
+    c = list(range(0, n + 1))
+
+    s = c[0]
+    for i in range(n+1):
+        xn = 1
+        for j in range(1, i+1):
+            xn *= x
+        s += c[i] * xn
+
+    return s
+
+## Algoritmo 2 ##
+
+def evalua_polinomio(n, x):
+    c = list(range(0, n + 1))
+
+    s = c[0]
+    for i in range(n+1):
+        s += c[i] * potencia(x, i)
+
+    return s
+
+def potencia(x, j):
+    if j == 0:
+        return 1
+    elif j % 2 == 1:
+        return x * potencia(x, j-1)
+    else:
+        t = potencia(x, j // 2)
+        return t*t
+
+#################
+
+# TODO: Agregar algoritmos 3 y 4 aquí
 
 # SUM
 def sum(a,n):
