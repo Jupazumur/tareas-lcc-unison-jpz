@@ -5,7 +5,7 @@ def evalua_polinomio_directa(n, x):
     c = list(range(0, n + 1))
 
     s = c[0]
-    for i in range(n+1):
+    for i in range(1, n+1):
         xn = 1
         for j in range(1, i+1):
             xn *= x
@@ -14,11 +14,11 @@ def evalua_polinomio_directa(n, x):
     return s
 
 # Algoritmo 2
-def evalua_polinomio(n, x):
+def evalua_polinomio_log(n, x):
     c = list(range(0, n + 1))
 
     s = c[0]
-    for i in range(n+1):
+    for i in range(1, n+1):
         s += c[i] * potencia(x, i)
 
     return s
@@ -33,11 +33,11 @@ def potencia(x, j):
         return t*t
 
 # Algoritmo 3
-def evalua_polinomio(n, x):
+def evalua_polinomio_precalc(n, x):
     c = list(range(0, n + 1))
     xn = 1
     s = c[0]
-    for i in range(n+1):
+    for i in range(1, n+1):
         xn *= x
         s += c[i] * xn
     
@@ -49,7 +49,7 @@ def horner(n, x):
     s = 0
     i = n
 
-    while(n >= 0):
+    while(i >= 0):
         s = (s*x) + c[i]
         i -= 1
     
@@ -75,8 +75,6 @@ def add(a, b, c, m, n):
     for i in range(1, m+1):
         for j in range(1, n+1):
             c[i][j] = a[i][j] + b[i][j]
-    
-    return c[i][j]
 
 # FIBONACCI
 def fibonacci(n):
@@ -98,7 +96,6 @@ def trasp(a, n):
             t = a[i][j]
             a[i][j] = a[j][i]
             a[j][i] = t
-    return t
 
 # MULTIPLICACIÓN
 def mult_rectangular(a, b, c, m, n, p):
@@ -107,8 +104,6 @@ def mult_rectangular(a, b, c, m, n, p):
             c[i][j] = 0
             for k in range(1, n+1):
                 c[i][j] = c[i][j] + a[i][k] * b[k][j]
-
-    return c[i][j]
 
 # MULTIPLICACIÓN 2
 def mult_cuadrada(a, b, c, n):
@@ -123,7 +118,7 @@ def mult_cuadrada(a, b, c, n):
 # PERMUTACIONES
 def perm(a, k, n):
     if (k == n):
-        print(a[1:n])
+        print(a[1:n+1])
     else:
         for i in range(k, n+1):
             t = a[k]
