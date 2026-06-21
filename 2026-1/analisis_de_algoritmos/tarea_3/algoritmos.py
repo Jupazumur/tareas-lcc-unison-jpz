@@ -13,8 +13,7 @@ def evalua_polinomio_directa(n, x):
 
     return s
 
-## Algoritmo 2 ##
-
+# Algoritmo 2
 def evalua_polinomio(n, x):
     c = list(range(0, n + 1))
 
@@ -33,9 +32,28 @@ def potencia(x, j):
         t = potencia(x, j // 2)
         return t*t
 
-#################
+# Algoritmo 3
+def evalua_polinomio(n, x):
+    c = list(range(0, n + 1))
+    xn = 1
+    s = c[0]
+    for i in range(n+1):
+        xn *= x
+        s += c[i] * xn
+    
+    return s
 
-# TODO: Agregar algoritmos 3 y 4 aquí
+# Algoritmo 4: Horner
+def horner(n, x):
+    c = list(range(0, n + 1))
+    s = 0
+    i = n
+
+    while(n >= 0):
+        s = (s*x) + c[i]
+        i -= 1
+    
+    return s
 
 # SUM
 def sum(a,n):
