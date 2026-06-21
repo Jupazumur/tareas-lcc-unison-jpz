@@ -46,7 +46,7 @@ def trasp(a, n):
     return t
 
 # MULTIPLICACIÓN
-def mult(a, b, c, m, n, p):
+def mult_rectangular(a, b, c, m, n, p):
     for i in range(1, m+1):
         for j in range(1, p+1):
             c[i][j] = 0
@@ -56,7 +56,7 @@ def mult(a, b, c, m, n, p):
     return c[i][j]
 
 # MULTIPLICACIÓN 2
-def mult(a, b, c, n):
+def mult_cuadrada(a, b, c, n):
     for i in range(1, n+1):
         for j in range(1, n+1):
             c[i][j] = 0
