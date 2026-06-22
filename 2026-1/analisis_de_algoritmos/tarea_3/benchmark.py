@@ -1,7 +1,7 @@
-ESCALA_N = [100, 500, 1000, 2500, 5000, 7500, 10000, 12500, 15000, 20000]
-ESCALA_RSUM = [10, 50, 100, 200, 300, 400, 500, 600, 800, 950] # Evita el limite de recursion 1000
-ESCALA_N2 = [5, 10, 25, 50, 100, 200, 300, 400, 600, 800]
-ESCALA_N3 = [5, 10, 20, 50, 80, 100, 120, 150, 200, 250]
+ESCALA_LINEAL_LOG = [2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000, 18000, 20000]
+ESCALA_CUADRATICA = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+ESCALA_CUBICA = [25, 50, 75, 100, 125, 150, 175, 200, 225, 250]
+ESCALA_RECURSIVA = [100, 200, 300, 400, 500, 600, 700, 800, 900, 950] # Evita el limite de recursion 1000
 ESCALA_FACTORIAL = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 def run_benchmark(funcion_datos, algoritmo, escala, imprimir_t=False):
@@ -15,7 +15,18 @@ def run_benchmark(funcion_datos, algoritmo, escala, imprimir_t=False):
 
     tiempos = []
     
-    factor_repeticion = 50 
+    if escala == ESCALA_LINEAL_LOG:
+        factor_repeticion = 1000
+    elif escala == ESCALA_RECURSIVA:
+        factor_repeticion = 1000
+    elif escala == ESCALA_CUADRATICA:
+        factor_repeticion = 50
+    elif escala == ESCALA_CUBICA:
+        factor_repeticion = 5
+    elif escala == ESCALA_FACTORIAL:
+        factor_repeticion = 1
+    else:
+        factor_repeticion = 50
 
     for n in escala:
         args = funcion_datos(n)
@@ -48,12 +59,6 @@ def datos_arreglo_1d(n):
     a = [0] + [randint(1, 1000) for _ in range(n)]
     
     return (a, n)
-
-def datos_fibo(n):
-    """
-    Para fibonacci(n)
-    """
-    return (n,)
 
 def datos_matrices_add(n):
     """
@@ -123,6 +128,22 @@ def datos_seqsearch(n):
     """
 
     a = [0] + [randint(1, 1000) for _ in range(n)]
-    x = a[n // 2] if n > 0 else 0
+    x = -999 # Recorre todo el arreglo
 
     return (a, x, n)
+
+def datos_polinomios(n):
+    """
+    Genera los datos para los algoritmos de polinomios.
+    Retorna grado (n) y valor x para evaluar.
+    """
+    x = 1.5  # Valor arbitrario pequeño para evitar desbordamientos
+    return (n, x)
+
+## EXTRAS ####################################################################
+
+def datos_fibo(n):
+    """
+    Para fibonacci(n)
+    """
+    return (n,)

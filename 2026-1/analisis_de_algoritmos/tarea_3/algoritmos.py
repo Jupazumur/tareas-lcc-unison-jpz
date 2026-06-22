@@ -76,19 +76,6 @@ def add(a, b, c, m, n):
         for j in range(1, n+1):
             c[i][j] = a[i][j] + b[i][j]
 
-# FIBONACCI
-def fibonacci(n):
-    if n <= 1:
-        return n
-    else:
-        fnm2 = 0
-        fnm1 = 1
-        for _ in range(2, n+1):
-            fn = fnm1 + fnm2
-            fnm2 = fnm1
-            fnm1 = fn
-        return fn
-
 # TRASPUESTA
 def trasp(a, n):
     for i in range(1, n):
@@ -97,15 +84,7 @@ def trasp(a, n):
             a[i][j] = a[j][i]
             a[j][i] = t
 
-# MULTIPLICACIÓN
-def mult_rectangular(a, b, c, m, n, p):
-    for i in range(1, m+1):
-        for j in range(1, p+1):
-            c[i][j] = 0
-            for k in range(1, n+1):
-                c[i][j] = c[i][j] + a[i][k] * b[k][j]
-
-# MULTIPLICACIÓN 2
+# MULTIPLICACIÓN CUADRADA
 def mult_cuadrada(a, b, c, n):
     for i in range(1, n+1):
         for j in range(1, n+1):
@@ -118,7 +97,8 @@ def mult_cuadrada(a, b, c, n):
 # PERMUTACIONES
 def perm(a, k, n):
     if (k == n):
-        print(a[1:n+1])
+        #print(a[1:n+1])
+        pass
     else:
         for i in range(k, n+1):
             t = a[k]
@@ -138,3 +118,26 @@ def seqsearch(a, x, n):
         i -= 1
     
     return i
+
+## EXTRAS ####################################################################
+
+# FIBONACCI
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        fnm2 = 0
+        fnm1 = 1
+        for _ in range(2, n+1):
+            fn = fnm1 + fnm2
+            fnm2 = fnm1
+            fnm1 = fn
+        return fn
+    
+# MULTIPLICACIÓN RECTANGULAR
+def mult_rectangular(a, b, c, m, n, p):
+    for i in range(1, m+1):
+        for j in range(1, p+1):
+            c[i][j] = 0
+            for k in range(1, n+1):
+                c[i][j] = c[i][j] + a[i][k] * b[k][j]
